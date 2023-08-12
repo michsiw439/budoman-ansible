@@ -5,7 +5,7 @@ The **budoman-ansible** project serves as a central automation and configuration
 ## Initial setup
 ```bash
 1. Make sure that you have installed ansible on local machine
-2. Make sure that you have require for specific environment vault-password
+2. Make sure that you have require vault-password for specific environment
 ```
 
 ## Features
