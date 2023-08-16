@@ -1,0 +1,15 @@
+---
+- name: Configure cron to send newsletter
+  hosts: cron-servers
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Ensure cron is installed
+      package:
+        name: cron
+        state: present
+    - name: schedule task in cron
+      cron:
+        name: Send newsletter task
+        minute: "*"
+        job: /bin/bash -l -c 'export GEM_HOME=/usr/local/bundle && cd /budoman-backend && bundle exec rake send_newsletter'
