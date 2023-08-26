@@ -1,0 +1,9 @@
+---
+- name: Upload evironment variables
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Copy .env file on remote hosts
+      copy:
+        src: "{{ playbook_dir }}/../../secrets/budoman-front/development/env.yml"
+        dest: /budoman-front/.env
