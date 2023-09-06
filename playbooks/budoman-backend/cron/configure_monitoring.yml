@@ -4,11 +4,6 @@
   become: yes
   gather_facts: no
   tasks:
-    - name: Ensure host variable is provided
-      assert:
-        that:
-          - host is defined
-        msg: "The 'host' variable must be provided using -e 'host=value'"
     - name: Ensure cron is installed
       package:
         name: cron
