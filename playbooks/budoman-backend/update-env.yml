@@ -5,5 +5,5 @@
   tasks:
     - name: Copy .env file on remote hosts
       copy:
-        src: "{{ playbook_dir }}/../../secrets/budoman-backend/development/env.yml"
+        src: "{{ playbook_dir }}/../../secrets/budoman-backend/{{ env }}/env.yml"
         dest: /budoman-backend/.env

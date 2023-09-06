@@ -1,6 +1,6 @@
 ---
 - name: Configure cron to monitor machine
-  hosts: cron-servers
+  hosts: cron_servers
   become: yes
   gather_facts: no
   tasks:
