@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Capture CPU Info
-cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print "us:" $2 " sy:" $4 " id:" $8 " hi:" $10 " si:" $12}')
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print "us:" $2 " sy:" $4}')
 
 # Capture Memory Info
 mem_info=$(free -h | grep "Mem" | awk '{print "total:" $2 " used:" $3 " free:" $4}')
