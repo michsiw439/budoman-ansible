@@ -29,3 +29,7 @@ ansible-playbook -i ./inventories/budoman-backend/development/hosts.yml playbook
 A playbook designed for the seamless upload and integration of bash scripts into the applications.
 
 By harnessing the power of Ansible, **budoman-ansible** facilitates a smoother, more organized, and secure operational flow for both the frontend and backend environments of the Budoman suite.
+Sample monitoring configuration
+```bash
+ansible-playbook -i ./inventories/budoman-backend/development/hosts.yml playbooks/budoman-backend/cron/configure_monitoring.yml
+```
