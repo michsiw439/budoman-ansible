@@ -22,26 +22,32 @@ graphql_query="mutation monitorResources(\$input: MonitorResourcesInput!) {
   monitorResources(input: \$input)
 }"
 
-# Construct the payload
-payload="{
-    \"query\": \"$graphql_query\",
-    \"variables\": {
-        \"input\": {
-            \"cpuUsage\": \"$cpu_usage\",
-            \"memInfo\": \"$mem_info\",
-            \"swapInfo\": \"$swap_info\",
-            \"loggedUsers\": \"$logged_users\",
-            \"recentActions\": \"$recent_actions\",
-            \"privateIp\": \"$private_ip\",
-            \"publicIp\": \"$public_ip\"
-        }
+# Construct the payload using jq
+payload=$(jq -n \
+  --arg q "$graphql_query" \
+  --arg cpu "$cpu_usage" \
+  --arg mem "$mem_info" \
+  --arg swap "$swap_info" \
+  --arg users "$logged_users" \
+  --arg actions "$recent_actions" \
+  --arg p_ip "$private_ip" \
+  --arg pub_ip "$public_ip" \
+  '{
+    query: $q,
+    variables: {
+      input: {
+        cpuUsage: $cpu,
+        memInfo: $mem,
+        swapInfo: $swap,
+        loggedUsers: $users,
+        recentActions: $actions,
+        privateIp: $p_ip,
+        publicIp: $pub_ip
+      }
     }
-}"
+  }')
 
 endpoint_url=$1
-
-# Ensure that the payload does not contain any newline characters (this can break the JSON parsing on the server side)
-payload=$(echo "$payload" | tr -d '\n')
 
 # Send Payload with curl
 curl -X POST -H "Content-Type: application/json" -d "$payload" "$endpoint_url"

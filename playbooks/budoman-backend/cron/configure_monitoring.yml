@@ -8,6 +8,10 @@
       package:
         name: cron
         state: present
+    - name: Ensure jq is installed
+      package:
+        name: jq
+        state: present
     - name: Upload bash script
       copy:
         src: "{{ playbook_dir }}/../../../scripts/budoman-backend/monitor_resources.sh"
