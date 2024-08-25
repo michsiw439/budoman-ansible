@@ -6,4 +6,4 @@
     - name: Upload .env file on remote hosts
       copy:
         src: "{{ playbook_dir }}/../../secrets/budoman-backend/{{ env }}/env.yml"
-        dest: /budoman-backend/.env
+        dest: "{{ env_path }}/.env"
